@@ -87,14 +87,21 @@ Examples :
 // !!! Remember that your changes GOES AT THE BOTTOM OF THIS FILE right before the last #endif !!!
 */
 
-#ifndef USE_SCRIPT
-#define USE_SCRIPT
-#endif
-#ifndef USE_SML_M
-#define USE_SML_M
-#endif
-#ifdef USE_RULES
-#undef USE_RULES
-#endif
+// -- Rules or Script  ----------------------------
+// Select none or only one of the below defines USE_RULES or USE_SCRIPT
+#define USE_RULES                                // Add support for rules (+8k code)
+  #define USE_EXPRESSION                         // Add support for expression evaluation in rules (+3k2 code, +64 bytes mem)
+    #define SUPPORT_IF_STATEMENT                 // Add support for IF statement in rules (+4k2 code, -332 bytes mem)
+//  #define USER_RULE1 "<Any rule1 data>"          // Add rule1 data saved at initial firmware load or when command reset is executed
+//  #define USER_RULE2 "<Any rule2 data>"          // Add rule2 data saved at initial firmware load or when command reset is executed
+//  #define USER_RULE3 "<Any rule3 data>"          // Add rule3 data saved at initial firmware load or when command reset is executed
+
+//#define USE_SCRIPT                               // Add support for script (+17k code)
+//  #define USE_SCRIPT_FATFS 4                     // Script: Add FAT FileSystem Support
+//  #define SUPPORT_MQTT_EVENT                     // Support trigger event with MQTT subscriptions (+3k5 code)
+
+// -- DS18B20 Naming ------------------------------
+#define USE_DS18x20_RECONFIGURE    // When sensor is lost keep retrying or re-configure
+#define DS18x20_USE_ID_AS_NAME     // Use last 3 bytes for naming of sensors
 
 #endif  // _USER_CONFIG_OVERRIDE_H_
